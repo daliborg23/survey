@@ -114,6 +114,8 @@ while ($item = mysqli_fetch_array($vysledek)) {
         <textarea name="odpoved" rows="4" cols="20">Napiste odpoved</textarea>
         <input type="submit" value="Vlozit odpoved" name="odeslat_odpoved"/>
     </form>
-   
+<?php
+
+mysqli_close($con); ?>
 </body>
 </html>

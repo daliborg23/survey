@@ -1,0 +1,34 @@
+CREATE DATABASE phpcviceni;
+
+CREATE USER anketa IDENTIFIED BY PASSWORD `heslo`;
+
+GRANT USAGE ON *.* TO `anketa`@`localhost`;
+
+GRANT SELECT, INSERT, UPDATE ON `cviceniphp`.`odpovedi` TO `anketa`@`localhost`;
+
+GRANT SELECT, INSERT ON `cviceniphp`.`anketniotazky` TO `anketa`@`localhost`;
+
+CREATE TABLE `anketniotazky` (
+  `id_otazky` int(11) NOT NULL,
+  `text_otazky` varchar(10000) COLLATE utf8_czech_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+CREATE TABLE `odpovedi` (
+  `id_odpovedi` int(11) NOT NULL,
+  `id_otazky_odpoved` int(11) NOT NULL,
+  `text_odpovedi` varchar(10000) COLLATE utf8_czech_ci DEFAULT NULL,
+  `pocet_hlasu` int(11) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_czech_ci;
+
+ALTER TABLE `anketniotazky`
+  ADD PRIMARY KEY (`id_otazky`);
+
+ALTER TABLE `odpovedi`
+  ADD PRIMARY KEY (`id_odpovedi`);
+
+ALTER TABLE `anketniotazky`
+  MODIFY `id_otazky` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+ALTER TABLE `odpovedi`
+  MODIFY `id_odpovedi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+COMMIT;
